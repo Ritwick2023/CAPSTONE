@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AskKia</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #2D2D2D;
+            border-bottom: 1px solid #444;
+            padding: 10px 20px;
+            position: relative; 
+            z-index: 100; 
+        }
+
+        .navbar ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            margin: 0 15px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .navbar a:hover {
+            color: #cccccc;
+        }
+
+        .navbar .logo a {
+            font-weight: bold;
+            font-size: 24px;
+            color: #FFFFFF;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .navbar .join-btn a {
+            background-color: #E9897E;
+            color: #402C2A;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: none;
+        }
+
+        .navbar .join-btn a:hover {
+            background-color: #d9796e;
+            color: #402C2A;
+        }
+
+        .navbar .push-right {
+            margin-left: auto; 
+        }
+
+        .navbar .arrow {
+            margin-left: 6px;
+            font-size: 0.7em;
+            vertical-align: middle;
+        }
+        .dropdown {
+            position: relative;
+        }
+        /* Made selector more specific */
+        li.dropdown > .dropdown-menu {
+            display: none;
+            position: absolute; 
+            top: 100%; 
+            left: 0;
+            background-color: #2D2D2D; 
+            padding: 20px;
+            border-radius: 8px; 
+            min-width: 300px; 
+            z-index: 10; 
+            list-style: none; 
+            margin: 0; 
+            padding-left: 20px;
+        }
+        li.dropdown:hover > .dropdown-menu {
+            display: block; 
+        }
+        .dropdown-menu li {
+            margin: 0;
+            width: 100%; 
+        }
+        
+        .dropdown-menu a {
+            display: block;  
+            padding: 10px 0; 
+            font-size: 13px; 
+            font-weight: 400;
+        }
+        
+        .dropdown-menu a:hover {
+            color: #E9897E;
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar li {
+                margin: 10px 0;
+                width: 100%;
+            }
+
+            .navbar .login-btn {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .navbar .push-right {
+                margin-left: 0;
+            }
+
+            .navbar .join-btn {
+                width: 100%;
+            }
+
+            .navbar .join-btn a {
+                display: block;
+                text-align: center;
+            }
+            li.dropdown > .dropdown-menu {
+                position: static;
+                width: 100%;
+                background-color: transparent;  
+                padding: 0 0 0 20px; 
+                border-radius: 0;
+                min-width: 0;
+                box-sizing: border-box;
+                display: none; 
+            }
+            li.dropdown:hover > .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-menu a {
+                padding: 8px 0;
+                font-size: 12px;
+            }
+        }
+        .hero {
+            background-color: #FDF9F6;
+            padding: 60px 40px;
+            display: flex;  
+            align-items: center;  
+            justify-content: center;  
+            gap: 40px;  
+            max-width: 1200px;  
+            margin: -1px auto 0 auto;  
+        }
+
+
+        .hero-content {
+            flex: 1; 
+            max-width: 500px;
+        }
+        .hero-heading {
+            font-size: 48px;
+            font-weight: 300;
+            color: #2D2D2D;
+            line-height: 1.2;
+            margin: 0 0 30px 0;
+        }
+        
+        .hero-heading span {
+            font-weight: 600;
+        }
+        .hero-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+
+        .hero-checklist li {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #2D2D2D;
+            display: flex;
+            align-items: center;
+        }
+        .hero-checklist li::before {
+            content: '✓';
+            color: #E9897E; 
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 12px;
+        }
+
+        .hero-button {
+            background-color: #E9897E;
+            color: #402C2A;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-button:hover {
+            background-color: #d9796e;
+        }
+
+
+        .hero-image {
+            flex: 1;  
+            max-width: 500px;
+        }
+
+        .hero-image img {
+            width: 100%;  
+            border-radius: 20px;  
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column; 
+                padding: 40px 20px;
+            }
+            
+            .hero-heading {
+                font-size: 36px;
+            }
+        }
+        .services-section {
+            background-color: #FFFFFF;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .services-heading {
+            font-size: 36px;
+            font-weight: 300;
+            color: #2D2D2D;
+            margin-bottom: 50px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: #FDF9F6;
+            border-radius: 16px;
+            overflow: hidden;  
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;  
+        }
+
+        .service-card-content {
+            padding: 24px;
+        }
+
+        .service-card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2D2D2D;
+            margin: 0 0 10px 0;
+        }
+
+        .service-card-description {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .service-card-link {
+            font-size: 14px;
+            color: #E9897E;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+
+        .insurance-banner {
+            background-color: #FDF9F6;
+            padding: 60px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 16px;
+        }
+
+        .insurance-content {
+            flex: 1;
+        }
+
+        .insurance-heading {
+            font-size: 32px;
+            font-weight: 600;
+            color: #2D2D2D;
+            margin: 0 0 10px 0;
+        }
+
+        .insurance-text {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .insurance-button {
+            background-color: #E9897E;
+            color: #402C2A;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        .insurance-logos {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            align-items: center;
+        }
+
+        .insurance-logos span {
+            font-size: 18px;
+            font-weight: 500;
+            color: #777;
+            text-align: center;
+        }
+
+
+        .membership-section {
+            background-color: #FFFFFF;
+            padding: 80px 40px;
+        }
+
+        .membership-heading {
+            font-size: 36px;
+            font-weight: 300;
+            color: #2D2D2D;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .membership-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .plan-card {
+            flex: 1;
+            background-color: #FDF9F6;
+            border: 1px solid #F0EAE4;
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .plan-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2D2D2D;
+            margin: 0 0 10px 0;
+        }
+
+        .plan-description {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 30px;
+            min-height: 40px; 
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+
+        .plan-features li {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #2D2D2D;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .plan-features li::before {
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 12px;
+            line-height: 1;
+        }
+
+
+        .plan-features .included::before {
+            content: '✓';
+            color: #E9897E;
+        }
+        .plan-features .excluded::before {
+            content: '×';
+            color: #AAAAAA;
+        }
+
+        .plan-button {
+            display: block;
+            width: 100%;
+            background-color: #2D2D2D;
+            color: #FFFFFF;
+            padding: 16px 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .plan-button:hover {
+            background-color: #444;
+        }
+        .plan-card.primary .plan-button {
+            background-color: #E9897E;
+            color: #402C2A;
+        }
+        
+        .plan-card.primary .plan-button:hover {
+            background-color: #d9796e;
+        }
+
+        .plan-price {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 900px) {
+            .insurance-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .insurance-logos {
+                width: 100%;
+            }
+            .membership-grid {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .services-section, .insurance-banner, .membership-section {
+                padding: 40px 20px;
+            }
+            .services-heading, .insurance-heading, .membership-heading {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <ul>
+                <li class="logo"><a href="#">kia Health</a></li>
+                
+                <!-- This is the dropdown item -->
+                <li class="dropdown">
+                    <a href="#">Services<span class="arrow">▼</span></a>
+                    <!-- This is the new dropdown menu -->
+                    <ul class="dropdown-menu">
+                        <li><a href="#">GYNECOLOGY & SEXUAL HEALTH</a></li>
+                        <li><a href="#">PRIMARY CARE</a></li>
+                        <li><a href="#">PERIMENOPAUSE & MENOPAUSE</a></li>
+                        <li><a href="#">FERTILITY & POSTPARTUM SUPPORT</a></li>
+                        <li><a href="#">MENTAL HEALTH</a></li>
+                        <li><a href="#">WEIGHT & METABOLIC HEALTH</a></li>
+                        <li><a href="#">ACUPUNCTURE</a></li>
+                        <li><a href="#">SKIN CARE</a></li>
+                        <li><a href="#">LONGEVITY</a></li>
+                        <li><a href="#">ALL SERVICES</a></li>
+                    </ul>
+                </li>
+                
+                <li class="dropdown"> <!-- Made this a dropdown too -->
+                    <a href="#">Locations<span class="arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">LOS ANGELES</a></li>
+                        <li><a href="#">NEW YORK</a></li>
+                        <li><a href="#">SAN FRANCISCO</a></li>
+                        <li><a href="#">ARIZONA</a></li>
+                        <li><a href="#">VIRTUAL CARE</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"> <!-- Made this a dropdown too -->
+                    <a href="#">How it works<span class="arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">CARE AT KIA</a></li>
+                        <li><a href="#">INSURANCE</a></li>
+                        <li><a href="#">MEET YOUR CARE TEAM</a></li>
+                    </ul>
+                </li>
+                <li class="push-right"><a href="#">The KIA Take</a></li>
+                <li class="join-btn"><a href="#">Join Kia</a></li>
+                <li><a href="#">Log in</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-heading">High-quality, compassionate care for <span>women</span></h1>
+                
+                <ul class="hero-checklist">
+                    <li>Whole-person healthcare, in one place</li>
+                    <li>Care within days, not months</li>
+                    <li>Online and in-clinic appointments</li>
+                    <li>Built for women</li>
+                    <li>Personalized, integrated care</li>
+                </ul>
+                
+                <a href="#" class="hero-button">Book an appointment</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://cdn.sanity.io/images/8qqycr4y/production/9ca48c68b1a995c7ec83f7070aba91777177b48f-1458x1080.webp" alt="Woman smiling at a Kia Health clinic">
+            </div>
+        </div>
+        <section class="services-section">
+            <h2 class="services-heading">Comprehensive, compassionate care for your top concerns</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://cdn.sanity.io/images/8qqycr4y/production/441f3e48b83feacd5a3ad15666ca295fd9263d2e-800x600.webp" alt="Gynecology & Sexual Health">
+                    <div class="service-card-content">
+                        <h3 class="service-card-title">Sexual & Gynecological Health</h3>
+                        <p class="service-card-description">Routine exams, pap smears, IUDs, STI treatments, and more in a safe, inclusive environment.</p>
+                        <a href="#" class="service-card-link">Learn more</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://cdn.sanity.io/images/8qqycr4y/production/8fc2776835dedd48eba8af6fbb5b9807d54056a1-800x600.webp" alt="Primary Care">
+                    <div class="service-card-content">
+                        <h3 class="service-card-title">Primary Care</h3>
+                        <p class="service-card-description">Prescription refills, flu shots, treatment for seasonal viruses, allergies, and whatever life throws at you.</p>
+                        <a href="#" class="service-card-link">Learn more</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://cdn.sanity.io/images/8qqycr4y/production/62ec120b46baad47e749a9f455e9b6ecebfac80b-800x600.webp" alt="Perimenopause & Menopause">
+                    <div class="service-card-content">
+                        <h3 class="service-card-title">Perimenopause & Menopause</h3>
+                        <p class="service-card-description">Expert care to manage symptoms like mood changes, hot flashes, and brain fog.</p>
+                        <a href="#" class="service-card-link">Learn more</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="insurance-banner">
+            <div class="insurance-content">
+                <h2 class="insurance-heading">Yes, we take insurance</h2>
+                <p class="insurance-text">Just like a normal doctor's office, Kia accepts most major PPOs. Copays and deductible costs still apply.</p>
+                <a href="#" class="insurance-button">See if you're in network</a>
+            </div>
+            <div class="insurance-logos">
+                <span>United Healthcare</span>
+                <span>Aetna</span>
+                <span>Cigna</span>
+                <span>Blue Cross</span>
+                <span>Anthem</span>
+                <span>See all +</span>
+            </div>
+        </section>
+        <section class="membership-section">
+            <h2 class="membership-heading">No one woman's health journey is the same, which is why we offer options.</h2>
+            
+            <div class="membership-grid">
+                <div class="plan-card">
+                    <h3 class="plan-title">KiaEssential</h3>
+                    <p class="plan-description">No membership, no fuss. Occasional, flexible care that's there when you need it.</p>
+                    <ul class="plan-features">
+                        <li class="included">Get care for your whole body</li>
+                        <li class="included">See a provider in days, not months</li>
+                        <li class="included">Use your insurance</li>
+                        <li class="excluded">Priority access to evening/weekend appointments</li>
+                        <li class="excluded">Coordinated support for booking & referrals</li>
+                    </ul>
+                    <a href="#" class="plan-button">Join Now</a>
+                    <p class="plan-price">No Membership Fee</p>
+                </div>
+                
+                <div class="plan-card primary">
+                    <h3 class="plan-title">Kia Membership</h3>
+                    <p class="plan-description">Membership = more benefits. Ongoing support with more guidance & access.</p>
+                    <ul class="plan-features">
+                        <li class="included">Get care for your whole body</li>
+                        <li class="included">See a provider in days, not months</li>
+                        <li class="included">Use your insurance</li>
+                        <li class="included">Priority access to evening/weekend appointments</li>
+                        <li class="included">Coordinated support for booking & referrals</li>
+                    </ul>
+                    <a href="#" class="plan-button">Join Now</a>
+                    <p class="plan-price">Membership is $25/month or $240/year</p>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+</body>
+</html>
+
