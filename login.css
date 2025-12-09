@@ -1,0 +1,86 @@
+/* login.css */
+
+.login-page {
+    background-color: #FDF9F6;
+    min-height: calc(100vh - 71px); /* Full viewport height minus navbar height (approx 71px) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-container {
+    background-color: #FFFFFF;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-heading {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2D2D2D;
+    margin-bottom: 30px;
+}
+
+.login-form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #2D2D2D;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.login-button {
+    width: 100%;
+    background-color: #E9897E;
+    color: #402C2A;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #d9796e;
+}
+
+.login-note {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login-note a {
+    color: #E9897E;
+    text-decoration: none;
+}
+
+.login-note a:hover {
+    text-decoration: underline;
+}
